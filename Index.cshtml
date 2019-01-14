@@ -1,0 +1,126 @@
+﻿@model IEnumerable<PhuKienAZ.Areas.Customer.Models.ViewModels.CartItem>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
+}
+<hr />
+<h2 style="text-align:center">Giỏ hàng</h2>
+<hr />
+<div class="container" id="cart-container">
+    @if (Model.ToList().Count > 0)
+    {
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th style="width:45%">Sản phẩm</th>
+                    <th style="width:15%">Đơn giá (VNĐ)</th>
+                    <th style="width:8%">Số lượng</th>
+                    <th style="width:22%" class="text-center">Tổng (VNĐ)</th>
+                    <th style="width:10%" class="text-center">Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr id="R@(item.ProductId)">
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-sm-2 hidden-xs"><img src="@item.Picture" style="height:60px;" alt="..." class="img-responsive" /></div>
+                                <div class="col-sm-10">
+                                    <h4 class="nomargin">@item.ProductName</h4>
+                                    <p>@item.CategoryName</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">@item.Price</td>
+                        <td data-th="Quantity">
+                            <input name="@item.ProductId" type="number" min="1" max="60" class="form-control text-center" value="@item.Quantity">
+                        </td>
+                        <td data-th="Subtotal" class="text-center">@(item.Quantity * item.Price)</td>
+                        <td class="actions text-center" data-th="">
+                            <button class="btn btn-danger btn-sm" onclick="removeItem('@item.ProductId')"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td><a href="/Customer/Home/Index" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a></td>
+                    <td colspan="2" class="hidden-xs"><b><u>Tổng cộng</u></b></td>
+                    <td class="hidden-xs text-center"><strong id="total">@Model.Sum(x => x.Quantity * x.Price)</strong></td>
+                    <td><a href="/Customer/Order/PlaceOrder" class="btn btn-success btn-block"> Thanh toán <i class="fa fa-angle-right"></i></a></td>
+                </tr>
+            </tfoot>
+        </table>
+    }
+    else
+    {
+        <hr /><h3 style="text-align:center">Không có sản phẩm nào<br /><br /> <a href="/Customer/Home/Index" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a></h3><hr />
+    }
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('td input').change(function () {
+                var quantity = $(this).val();
+                var productId = $(this).attr('name');
+                if (quantity < 1) {
+                    $(this).val(1);
+                    return;
+                } else if (quantity > 60) {
+                    $(this).val(60);
+                    return;
+                } else {
+                    updateCart(quantity, productId, this);
+                }
+            });
+        });
+
+        function removeItem(productId) {
+            if (confirm('Bạn chắc chắn chứ')) {
+                updateCart(0, productId, this);
+            }
+        }
+
+        function updateCart(quantity, productId, element) {
+            var thisParent = $(element).parent();
+            $.post({
+                url: "/Customer/Cart/UseCart",
+                data: {
+                    quantity: quantity,
+                    productId: productId,
+                    isAdd: false
+                },
+                success: function (data) {
+                    if (data.endsWith('!')) {
+                        alert(data);
+                    } else {
+                        //update total cart item in layout
+                        var totalCartItem = parseInt(data);
+                        $('#total-cart-item').html(data);
+                        if (totalCartItem == 0) {
+                            $('table').remove();
+                            $('#cart-container').append('<hr /><h3 style="text-align:center">Không có sản phẩm nào<br /><br /> <a href="/Customer/Home/Index" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a></h3><hr />')
+                        }
+
+                        if (quantity == 0) {
+                            $('#R' + productId).remove();
+                        } else {
+                            //update subtotal
+                            var price = parseInt(thisParent.siblings('[data-th=Price]').text());
+                            thisParent.siblings('[data-th=Subtotal]').text(price * quantity);
+                        }
+                        //update total
+                        var total = 0;
+                        $('[data-th=Subtotal]').each(function () {
+                            total += parseInt($(this).text());
+                        });
+                        $('#total').text(total);
+                    }
+                }
+            });
+        }
+    </script>
+}
+
