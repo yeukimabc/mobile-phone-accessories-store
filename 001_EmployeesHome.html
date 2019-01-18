@@ -1,0 +1,163 @@
+<!doctype html>
+<html ng-app="myApp" id="ng-app" lang="ja" style="overflow-y: auto">
+<head>
+
+<!-- meta -->
+<meta http-equiv="X-UA-Compatible" content="edge">
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<script type="text/javascript" src="script/jquery.min.js"></script>
+<script type="text/javascript" src="script/jquery-ui.min.js"></script>
+<script type="text/javascript" src="script/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" src="script/jqueryupload.js"></script>
+<script type="text/javascript" src="script/xml2json.min.js"></script>
+<script type="text/javascript" src="script/util.js"></script>
+<script type="text/javascript" src="script/001_employees.js"></script>
+<link media="all" type="text/css" rel="stylesheet" href="css/arcSuite-style.css" />
+
+<style type="text/css">
+
+
+#contentsTable2 th,#contentsTable2 td {
+	border: 1px solid #666666;
+	height: 25px;
+	vertical-align: middle;
+	font-size: 12pt;
+}
+
+#contentsTable2 input {
+	font-size: 12pt;
+	font-family: none;
+}
+
+#contentsTable5 tr:hover td {
+	background: none;
+}
+</style>
+
+<!-- link -->
+
+
+</head>
+<body style="border: #4F80BD thin solid; margin: 10px 10px 0px 10px;">
+	<form name="frm">
+		<!-- Regist Start -->
+		<center>
+			<div style="margin-top: 10px">Register User</div>
+
+
+		</center>
+		<div style="margin-left: 75px; margin-top: 20px;">
+			<table cellpadding="10px">
+				<tr>
+					<td><b> Thông tin nhân viên</b></td>
+					<td></td>
+
+				</tr>
+
+				<tr>
+					<td style="float: right">Mã số nhân viên</td>
+					<td><input type="text" id="txtEmployeesId" maxlength="6" size="50	" /></td>
+				</tr>
+
+				<tr>
+					<td style="float: right">Tên nhân viên</td>
+					<td><input type="text" id="txtEmployeesName" maxlength="64" size="50" /></td>
+				</tr>
+
+				<tr>
+					<td style="float: right">Giới tính</td>
+					<td><input type="radio" name="radEmployeesGender"
+						id="radEmployeesGender" value="Nam" /> Nam <input type="radio"
+						name="radEmployeesGender" id="radEmployeesGender" value="Nu" />
+						Nữ</td>
+				</tr>
+
+				<tr>
+					<td style="float: right" placeholder="yyyy/MM/dd">Ngày sinh</td>
+					<td><input type="date" id="dateEmployeeDOB" maxlength="10" size="50" /></td>
+				</tr>
+
+				<tr>
+					<td>
+						<div style="float: right">Quê Quán</div>
+					</td>
+					<td><input type="text" id="txtEmployeesAddress" maxlength="128" size="50"
+						style="height: 100px" /></td>
+				</tr>
+
+				<tr>
+					<td style="float: right">Chỗ ở hiện tại</td>
+					<td><input type="text" id="txtEmployeesAddressNow"  maxlength="128" size="50" />
+					</td>
+				</tr>
+
+				<tr>
+					<td style="float: right">Số điện thoại</td>
+					<td><input type="number" id="txtEmployeesPhone" maxlength="15" size="50" />
+					</td>
+				</tr>
+
+				<tr>
+					<td style="float: right">Địa chỉ Email</td>
+					<td><input type="text" id="txtEmployeesEmail" maxlength="32" size="50" /></td>
+				</tr>
+				<input type="hidden" type="text" id="dateEmployeeDateUpdate" size="50" />
+			</table>
+			<br /> <br />
+		</div>
+		<!-- Regist End -->
+
+		<!-- Search Start -->
+		<div style="margin-left: 350px">
+			<button id="btnClear" type="button">Clear</button>
+			<button id="btnSearch" type="button">Search</button>
+			<button id="btnUpdate" type="button">Update</button>
+		</div>
+		<hr />
+		<div style="margin-left: 50px" id="divResultSelect"></div>
+		<br />
+		<div style="text-align: left; margin-left: 50px">
+			<div id="divResultHeadTable"
+				style="height: 35px; width: 98.5%; overflow: hidden;">
+				<table id="resultHeadTable" class="tableWhite"
+					style="table-layout: fixed; width: 1500px">
+					<colgroup>
+						<col width="10px">
+						<col width="15px">
+						<col width="20px">
+						<col width="15px">
+						<col width="20px">
+						<col width="30px">
+						<col width="30px">
+						<col width="20px">
+						<col width="30px">
+						<col width="20px">
+						<col width="15px">
+					</colgroup>
+				</table>
+			</div>
+			<div id="divResultTable"
+				style="height: 460px; width: 100%; overflow: scroll;">
+				<table id="resultListTable" class="tableWhite"
+					style="table-layout: fixed; width: 1500px;">
+					<colgroup>
+						<col width="10px">
+						<col width="15px">
+						<col width="20px">
+						<col width="15px">
+						<col width="20px">
+						<col width="30px">
+						<col width="30px">
+						<col width="20px">
+						<col width="30px">
+						<col width="20px">
+						<col width="15px">
+					</colgroup>
+				</table>
+			</div>
+		</div>
+		<!-- Search End -->
+	</form>
+</body>
+</html>
