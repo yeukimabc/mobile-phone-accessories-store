@@ -1,0 +1,127 @@
+<html ng-app="myApp" id="ng-app" lang="ja" style="overflow-y: auto">
+
+<head>
+
+    <!-- meta -->
+    <meta http-equiv="X-UA-Compatible" content="edge">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <link rel="stylesheet" type="text/css" href="css/book.css" />
+    <script type="text/javascript" src="script/jquery.min.js"></script>
+    <script type="text/javascript" src="script/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="script/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="script/jqueryupload.js"></script>
+    <script type="text/javascript" src="script/xml2json.min.js"></script>
+    <script type="text/javascript" src="script/util.js"></script>
+    <script type="text/javascript" src="script/001_employees.js"></script>
+</head>
+
+<body style="margin: 15px 15px 0px 15px;">
+    <form name="frm">
+
+
+        <div style="margin-top: 30px; margin-left: 70%">
+            <button id="btnRegister" type="button">Register</button>
+            <button id="btnSearch" type="button">Search</button>
+            <button id="btnClear" type="button">Clear</button>
+        </div>
+        <center>
+            <div style="margin-top: 60px;">
+                <table style="border:1px solid;width: 60%">
+                    <tr>
+                        <td class='tLeft'>Mã sách</td>
+                        <td>
+                            <input type="text" id="txtBookId" name="txtBookId" maxlength="200" size="50" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='tLeft'>Tên sách</td>
+                        <td>
+                            <input type="text" id="txtBookName" name="txtBookName" maxlength="200" size="50" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='tLeft'>Chủng loại sách</td>
+                        <td>
+                            <select name="bookTypeId" id="bookList">
+                                <option value="1">khong ten</option>
+                                <option value="saab">Saab</option>
+                                <option value="opel">Opel</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='tLeft'>Tác giả</td>
+                        <td>
+                            <select name="authorId" id="authorList">
+                                <option value="volvo">Volv</option>
+                                <option value="saab">Saab</option>
+                                <option value="opel">Opel</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='tLeft'>Năm xuất bản</td>
+                        <td>
+                            <input type="text" id="txtPublishDate" name="txtPublishDate" maxlength="10" size="50" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='tLeft'>Giá gốc</td>
+                        <td>
+                            <input type="text" id="txtOriginPrice" name="txtOriginPrice" maxlength="9" size="50" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='tLeft'>Giá bán</td>
+                        <td>
+                            <input type="text" id="txtSellPrice" name="txtSellPrice" maxlength="9" size="50" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='tLeft'>Ngôn ngữ</td>
+                        <td>
+                            <input type="text" id="txtLanguge" name="txtLanguge" maxlength="25" size="50" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='tLeft'>Số trang</td>
+                        <td>
+                            <input type="text" id="txtPageNumber" name="txtPageNumber" maxlength="4" size="50" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='tLeft'>Nhà xuất bản</td>
+                        <td>
+                            <input type="text" id="txtPublisher" name="txtPublisher"  maxlength="120" size="50" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='tLeft'>Wikisource</td>
+                        <td>
+                            <input type="text" id="txtWikiSource" name="txtWikiSource" maxlength="256" size="50" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='tLeft'>Ảnh bìa</td>
+                        <td>
+                            <input type="file" id="txtImg"  size="50" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+            <div id="errMsg" style="margin-top: 30px;text-align: center;color: red">
+                <p>vung hien thi message loi</p>
+            </div>
+
+
+        </center>
+
+    </form>
+</body>
+
+</html>
