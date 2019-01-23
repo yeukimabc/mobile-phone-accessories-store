@@ -1,0 +1,92 @@
+<!doctype html>
+<html ng-app="myApp" id="ng-app" lang="ja" style="overflow-y: auto">
+
+<head>
+
+    <!-- meta -->
+    <meta http-equiv="X-UA-Compatible" content="edge">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <link rel="stylesheet" type="text/css" href="css/book.css"/>
+    <script type="text/javascript" src="script/jquery.min.js"></script>
+    <script type="text/javascript" src="script/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="script/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="script/jqueryupload.js"></script>
+    <script type="text/javascript" src="script/xml2json.min.js"></script>
+    <script type="text/javascript" src="script/util.js"></script>
+    <script type="text/javascript" src="script/001_employees.js"></script>
+    <!-- link -->
+
+</head>
+
+<body style="margin: 15px 15px 0px 15px;">
+    <form name="frm">
+
+
+        <div style="margin-top: 30px; margin-left: 70%">
+            <button id="btnRegister" type="button">Register</button>
+            <button id="btnSearch" type="button">Search</button>
+            <button id="btnClear" type="button">Clear</button>
+        </div>
+        <center>
+            <div style="margin-top: 60px;">
+                <table style="border:1px solid;width: 60%">
+                    <tr>
+                        <td class='tLeft'>Tên sách</td>
+                        <td><input type="text" id="txtBookName" maxlength="200" size="50" /></td>
+                    </tr>
+                    <tr>
+                        <td class='tLeft'>Chủng loại sách</td>
+                        <td>
+                            <select name="bookList" id="bookList">
+                                <option value="volvo">Volv</option>
+                                <option value="saab">Saab</option>
+                                <option value="opel">Opel</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='tLeft'>Năm xuất bản</td>
+                        <td><input type="text" id="txtPublishDate" maxlength="10" size="50" /></td>
+                    </tr>
+                </table>
+            </div>
+            <!-- Regist End -->
+
+            <!-- Search Start -->
+            <div style="margin-top: 30px;text-align: center;color: red">
+                <p>vung hien thi message loi</p>
+            </div>
+            <div style="text-align: left; margin-left: 50px">
+                <div id="divResultHeadTable" style="height: 35px; width: 98.5%; overflow: hidden;">
+                    <table id="resultHeadTable" class="tableWhite" style="table-layout: fixed; width: 1500px">
+                        <colgroup>
+                            <col width="10px"> <!-- STT  -->
+                            <col width="35px"> <!-- TenSach  -->
+                            <col width="20px">
+                            <col width="25px">
+                            <col width="30px">
+                            <col width="30px">
+
+                        </colgroup>
+                    </table>
+                </div>
+                <div id="divResultTable" style="height: 460px; width: 100%; overflow: scroll;">
+                    <table id="resultListTable" class="tableWhite" style="table-layout: fixed; width: 1500px;">
+                        <colgroup>
+                            <col width="10px"> <!-- STT  -->
+                            <col width="35px"> <!-- TenSach  -->
+                            <col width="20px">
+                            <col width="25px">
+                            <col width="30px">
+                            <col width="30px">
+                        </colgroup>
+                    </table>
+                </div>
+            </div>
+        </center>
+
+    </form>
+</body>
+
+</html>
